@@ -19,6 +19,7 @@ import {
   loadStats,
   PlayerStats,
 } from "@/lib/gameStats";
+import { analytics } from "@/lib/analytics";
 
 export type ActiveModal =
   | "none"
@@ -207,6 +208,11 @@ export const useSudokuStore = create<SudokuState>((set, get) => {
       );
 
       recordGameStarted(diff);
+      analytics.trackGameAction("new_game", {
+        difficulty: diff,
+        is_daily: Boolean(date),
+        daily_date: date,
+      });
 
       set({
         difficulty: diff,
@@ -399,6 +405,13 @@ export const useSudokuStore = create<SudokuState>((set, get) => {
           state.difficulty,
           state.timer,
           state.dailyDate || undefined
+        );
+
+        analytics.trackGameCompleted(
+          state.difficulty,
+          state.timer,
+          state.mistakes,
+          Math.max(0, 3 - state.hintsLeft)
         );
 
         set({

@@ -11,6 +11,7 @@ import {
   Zap,
   Check,
 } from "lucide-react";
+import { analytics } from "@/lib/analytics";
 
 export function SudokuControls() {
   const board = useSudokuStore((s) => s.board);
@@ -47,7 +48,10 @@ export function SudokuControls() {
       <div className="grid grid-cols-4 gap-2 sm:gap-3">
         {/* Undo */}
         <button
-          onClick={undo}
+          onClick={() => {
+            undo();
+            analytics.trackGameAction("undo");
+          }}
           disabled={!isGameActive || historyIndex <= 0}
           className="flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-2xl border border-black/[0.06] bg-white hover:bg-slate-50 disabled:opacity-35 disabled:cursor-not-allowed shadow-[0_1px_3px_rgba(0,0,0,0.03)] apple-press group cursor-pointer"
           title="Undo Move (Ctrl+Z)"
@@ -62,7 +66,10 @@ export function SudokuControls() {
 
         {/* Erase */}
         <button
-          onClick={erase}
+          onClick={() => {
+            erase();
+            analytics.trackGameAction("erase");
+          }}
           disabled={!isGameActive}
           className="flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-2xl border border-black/[0.06] bg-white hover:bg-slate-50 disabled:opacity-35 disabled:cursor-not-allowed shadow-[0_1px_3px_rgba(0,0,0,0.03)] apple-press group cursor-pointer"
           title="Erase Cell (Backspace)"
@@ -77,7 +84,10 @@ export function SudokuControls() {
 
         {/* Pencil (Notes) */}
         <button
-          onClick={toggleNotesMode}
+          onClick={() => {
+            toggleNotesMode();
+            analytics.trackGameAction("pencil_mode", { enabled: !notesMode });
+          }}
           disabled={!isGameActive}
           className={`relative flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-2xl border transition-all apple-press group cursor-pointer shadow-[0_1px_3px_rgba(0,0,0,0.03)] ${
             notesMode
@@ -113,7 +123,10 @@ export function SudokuControls() {
 
         {/* Hint */}
         <button
-          onClick={getHint}
+          onClick={() => {
+            getHint();
+            analytics.trackGameAction("hint", { hintsRemaining: hintsLeft - 1 });
+          }}
           disabled={!isGameActive || hintsLeft <= 0}
           className="relative flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-2xl border border-black/[0.06] bg-white hover:bg-slate-50 disabled:opacity-35 disabled:cursor-not-allowed shadow-[0_1px_3px_rgba(0,0,0,0.03)] apple-press group cursor-pointer"
           title="Get Smart Hint (H)"
@@ -187,7 +200,10 @@ export function SudokuControls() {
       {/* Auxiliary Tools Bar - Apple Segmented Pills */}
       <div className="flex items-center justify-between gap-2 px-1 text-xs">
         <button
-          onClick={toggleFastPencilMode}
+          onClick={() => {
+            toggleFastPencilMode();
+            analytics.trackGameAction("fast_pencil", { enabled: !fastPencilMode });
+          }}
           className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border font-mono transition-all cursor-pointer apple-press-subtle ${
             fastPencilMode
               ? "border-blue-300 bg-blue-50 text-blue-700 font-semibold"
@@ -200,7 +216,10 @@ export function SudokuControls() {
         </button>
 
         <button
-          onClick={autoFillAllNotes}
+          onClick={() => {
+            autoFillAllNotes();
+            analytics.trackGameAction("autofill_notes");
+          }}
           className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-black/[0.06] bg-white text-slate-700 hover:text-slate-950 hover:bg-slate-50 font-mono shadow-2xs transition-all apple-press-subtle cursor-pointer"
           title="Auto-calculate candidate notes for all empty squares"
         >
@@ -211,7 +230,10 @@ export function SudokuControls() {
         <Button
           variant="outline"
           size="sm"
-          onClick={() => openModal("new-game")}
+          onClick={() => {
+            openModal("new-game");
+            analytics.trackGameAction("new_game");
+          }}
           className="h-8 px-3 text-xs font-semibold rounded-full border-black/[0.08] bg-white hover:bg-slate-50 text-slate-800 shadow-2xs apple-press cursor-pointer"
         >
           New Game

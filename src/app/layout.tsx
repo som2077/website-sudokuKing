@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { PostHogProvider } from "@/providers/PostHogProvider";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -62,7 +63,9 @@ export default function RootLayout({
         className="min-h-full flex flex-col bg-white text-foreground selection:bg-indigo-500/20 selection:text-indigo-900"
         suppressHydrationWarning
       >
-        {children}
+        <PostHogProvider>
+          {children}
+        </PostHogProvider>
         <Analytics />
         <SpeedInsights />
       </body>

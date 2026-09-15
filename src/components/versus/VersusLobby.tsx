@@ -22,6 +22,7 @@ import {
   PlayerProfile,
 } from "@/lib/leaderboardService";
 import { soundEffects } from "@/lib/soundEffects";
+import { analytics } from "@/lib/analytics";
 
 const DEFAULT_LOBBY_PROFILE: PlayerProfile = {
   username: "SudokuPlayer",
@@ -74,6 +75,10 @@ export function VersusLobby() {
   const handleCreateRoom = () => {
     soundEffects.playClick();
     const code = generateCode();
+    analytics.trackVersus("create_room", {
+      mode: "friend",
+      difficulty: selectedDifficulty,
+    });
     initRoom({
       roomCode: code,
       mode: "friend",
@@ -98,6 +103,10 @@ export function VersusLobby() {
       }
     }
 
+    analytics.trackVersus("join_room", {
+      roomCode: formatted,
+    });
+
     initRoom({
       roomCode: formatted,
       mode: "friend",
@@ -109,6 +118,10 @@ export function VersusLobby() {
   const handleStartBot = (botDiff: "Easy" | "Medium" | "Hard") => {
     soundEffects.playClick();
     const code = `BOT-${Date.now().toString(36).substring(3, 7).toUpperCase()}`;
+    analytics.trackVersus("create_room", {
+      mode: "bot",
+      botDifficulty: botDiff,
+    });
     initRoom({
       roomCode: code,
       mode: "bot",
@@ -121,6 +134,10 @@ export function VersusLobby() {
   const handleQuickMatch = () => {
     soundEffects.playClick();
     const poolCode = `QM-${Math.floor(Math.random() * 5 + 1)}`;
+    analytics.trackVersus("create_room", {
+      mode: "quick",
+      difficulty: selectedDifficulty,
+    });
     initRoom({
       roomCode: poolCode,
       mode: "quick",
