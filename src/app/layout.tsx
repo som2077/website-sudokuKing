@@ -2,12 +2,43 @@ import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { PostHogProvider } from "@/providers/PostHogProvider";
+import { absoluteUrl, siteName, siteUrl } from "@/lib/site";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Sudoku King — The Ultimate Mind Puzzle Game",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Play Sudoku Online & Learn Solving Techniques | Sudoku King",
+    template: "%s | Sudoku King",
+  },
   description:
-    "Master the classic number puzzle game with daily challenges, smart hints, clean aesthetic, and progressive difficulty levels.",
+    "Play free Sudoku online, take daily challenges, and learn step-by-step Sudoku solving techniques from beginner to advanced.",
+  applicationName: siteName,
+  authors: [{ name: siteName }],
+  creator: siteName,
+  publisher: siteName,
+  category: "Games",
+  formatDetection: { telephone: false, address: false, email: false },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName,
+    title: "Play Sudoku Online & Learn Solving Techniques",
+    description:
+      "Play free Sudoku online, take daily challenges, and learn step-by-step solving techniques.",
+    url: absoluteUrl("/"),
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Play Sudoku Online & Learn Solving Techniques",
+    description:
+      "Play free Sudoku online, take daily challenges, and learn step-by-step solving techniques.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
 };
 
 export default function RootLayout({

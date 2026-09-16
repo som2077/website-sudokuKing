@@ -12,7 +12,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Terms and Conditions | Sudoku King",
+  title: "Terms and Conditions",
   description:
     "Read the terms, conditions, and usage policies for Sudoku King across mobile and web platforms. Learn about in-app purchases, subscriptions, and fair play.",
   keywords: [
@@ -22,6 +22,7 @@ export const metadata: Metadata = {
     "sudoku king rules and conditions",
     "in-app purchases terms",
   ],
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

@@ -68,7 +68,7 @@ export function SettingsModal() {
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && closeModal()}>
-      <DialogContent className="sm:max-w-md bg-white/90 backdrop-blur-2xl border border-black/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.12)] rounded-3xl">
+      <DialogContent className="max-h-[calc(100vh-1rem)] overflow-x-hidden bg-white/90 backdrop-blur-2xl border border-black/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.12)] rounded-3xl sm:max-w-md">
         <DialogHeader>
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 rounded-2xl bg-slate-100 flex items-center justify-center shadow-2xs">
@@ -81,7 +81,7 @@ export function SettingsModal() {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="flex flex-col divide-y divide-slate-100 max-h-[60vh] overflow-y-auto pr-1">
+        <div className="flex max-h-[60vh] flex-col divide-y divide-slate-100 overflow-x-hidden overflow-y-auto pr-1">
           {options.map((opt) => {
             const Icon = opt.icon;
             const checked = settings[opt.key];
@@ -89,11 +89,11 @@ export function SettingsModal() {
             return (
               <div
                 key={opt.key}
-                className="flex items-center justify-between py-3 gap-3"
+                className="flex min-w-0 items-center justify-between gap-3 py-3"
               >
-                <div className="flex items-start gap-2.5">
+                <div className="flex min-w-0 items-start gap-2.5">
                   <Icon className="h-4 w-4 text-slate-400 mt-0.5 shrink-0" />
-                  <div>
+                  <div className="min-w-0">
                     <div className="font-bold text-xs sm:text-sm text-slate-900">
                       {opt.label}
                     </div>

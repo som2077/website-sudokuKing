@@ -19,6 +19,7 @@ import {
   PlayCircle,
   Sparkles,
 } from "lucide-react";
+import { absoluteUrl } from "@/lib/site";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -46,7 +47,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${technique.title} – Sudoku Strategy & Rules | Sudoku King`,
+    title: `${technique.title} Sudoku Strategy & Rules`,
     description: technique.shortDescription,
     keywords: [
       technique.title.toLowerCase(),
@@ -55,6 +56,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       "how to solve sudoku",
       technique.difficulty.toLowerCase(),
     ],
+    alternates: { canonical: `/rules/${technique.slug}` },
+    openGraph: {
+      type: "article",
+      title: `${technique.title} Sudoku Strategy & Rules`,
+      description: technique.shortDescription,
+      url: absoluteUrl(`/rules/${technique.slug}`),
+    },
   };
 }
 
@@ -67,6 +75,15 @@ export default async function TechniqueDetailPage({ params }: PageProps) {
   }
 
   const { prev, next } = getTechniqueNavigation(technique.slug);
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+      { "@type": "ListItem", position: 2, name: "Sudoku Rules", item: absoluteUrl("/rules") },
+      { "@type": "ListItem", position: 3, name: technique.title, item: absoluteUrl(`/rules/${technique.slug}`) },
+    ],
+  };
 
   const badgeColor =
     technique.difficulty === "Beginner"
@@ -78,6 +95,11 @@ export default async function TechniqueDetailPage({ params }: PageProps) {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground selection:bg-indigo-500/15 selection:text-indigo-900 web3-grid-pattern">
       <Navbar />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
 
       <main className="flex-1 py-8 sm:py-14">
         <div className="container mx-auto max-w-4xl px-4 sm:px-8">

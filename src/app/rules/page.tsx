@@ -6,7 +6,7 @@ import { RulesTechniqueList } from "@/components/rules/RulesTechniqueList";
 import { Crown, Sparkles, BookOpen, ArrowRight, Play } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Sudoku Rules & Complete Solving Techniques | Sudoku King",
+  title: "Sudoku Rules & Complete Solving Techniques",
   description:
     "Master the rules of Sudoku and all 15 solving strategies from basic Last Free Cell to advanced X-Wing and Swordfish techniques with illustrations and video guides.",
   keywords: [
@@ -20,6 +20,7 @@ export const metadata: Metadata = {
     "swordfish",
     "sudoku tutorial",
   ],
+  alternates: { canonical: "/rules" },
 };
 
 export default function RulesPage() {

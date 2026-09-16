@@ -76,7 +76,7 @@ export function NewGameModal() {
 
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && closeModal()}>
-      <DialogContent className="sm:max-w-md bg-white/90 backdrop-blur-2xl border border-black/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.12)] rounded-3xl">
+      <DialogContent className="max-h-[calc(100vh-1rem)] overflow-x-hidden bg-white/90 backdrop-blur-2xl border border-black/[0.08] shadow-[0_20px_50px_rgba(0,0,0,0.12)] rounded-3xl sm:max-w-md">
         <DialogHeader>
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center border border-blue-200/60 shadow-2xs">
@@ -89,20 +89,20 @@ export function NewGameModal() {
           </DialogDescription>
         </DialogHeader>
 
-        <div className="grid grid-cols-1 gap-2 pt-1">
+        <div className="grid min-w-0 grid-cols-1 gap-2 pt-1">
           {difficulties.map((diff) => {
             const isSelected = diff.id === currentDiff;
             return (
               <button
                 key={diff.id}
                 onClick={() => startNewGame(diff.id)}
-                className={`flex items-center justify-between p-3.5 rounded-2xl border text-left transition-all cursor-pointer group apple-press-subtle ${
+                className={`flex min-w-0 items-center justify-between rounded-2xl border p-3.5 text-left transition-all cursor-pointer group apple-press-subtle ${
                   isSelected
                     ? "border-blue-600 bg-blue-50/70 shadow-xs"
                     : "border-black/[0.06] bg-white hover:bg-slate-50"
                 }`}
               >
-                <div>
+                <div className="min-w-0">
                   <div className="flex items-center gap-2">
                     <span className="font-bold text-sm text-slate-950 group-hover:text-blue-600 transition-colors tracking-tight">
                       {diff.name}

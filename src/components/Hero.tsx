@@ -75,9 +75,9 @@ export function Hero() {
       <div className="container relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-8 md:gap-12 md:grid-cols-2 lg:gap-26 xl:gap-34 items-center">
           {/* Left Column: Text & CTAs */}
-          <div className="relative z-10 flex flex-col items-center text-center md:items-start md:text-left">
+          <div className="relative z-10 flex flex-col items-center text-center md:items-start md:text-left lg:scale-[1.15] lg:origin-center">
             {/* Social Proof Badge */}
-            <div className="mb-6 sm:mb-8 inline-flex max-w-full items-center gap-2 sm:gap-3 rounded-full border border-gray-200 bg-white px-2 sm:px-3 py-1 sm:py-1.5 text-[11px] sm:text-sm font-medium text-black ">
+            <div className="mb-6 inline-flex max-w-full origin-center scale-[1.1] items-center gap-2 rounded-full border border-gray-200 bg-white px-2 py-1 text-[11px] font-medium text-black sm:mb-8 sm:gap-3 sm:px-3 sm:py-1.5 sm:text-sm md:scale-100">
               <span className="flex -space-x-1.5 shrink-0" aria-hidden="true">
                 <Image
                   src="/images/avatars/user-1.jpg"
@@ -101,7 +101,7 @@ export function Hero() {
                   className="h-5 w-5 sm:h-6 sm:w-6 rounded-full border-2 border-white object-cover"
                 />
               </span>
-              <AnimatedShinyText className="pr-1 sm:pr-2 whitespace-nowrap inline-flex items-center justify-center transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
+              <AnimatedShinyText className="min-w-0 flex-1 pr-1 text-center leading-tight sm:pr-2 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
                 Loved by 50k users with{" "}
                 <span className="text-[#FFB800] text-sm sm:text-base leading-none mx-1">
                   ★
@@ -135,27 +135,18 @@ export function Hero() {
             </p>
 
             {/* Action CTAs */}
-            <div className="mt-6 sm:mt-8 flex w-full flex-wrap items-center justify-center md:justify-start gap-3 sm:gap-4 px-2 sm:px-0">
+            <div className="mt-6 flex w-full max-w-[332px] flex-nowrap items-center justify-center gap-3 px-0 sm:mt-8 sm:max-w-none sm:gap-4 md:justify-start">
               <a
                 href="#game"
-                className="flex-1 sm:flex-none sm:w-auto transition-opacity hover:opacity-80 apple-press-subtle flex justify-center"
+                className="flex h-[48px] min-w-0 flex-1 items-center justify-center rounded-lg bg-black text-base font-medium text-white shadow-sm transition-all hover:bg-slate-900 hover:scale-[1.02] active:scale-[0.98] apple-press-subtle sm:w-[160px] sm:flex-none"
               >
-                <Image
-                  src="/playnow.png"
-                  alt="Play Now"
-                  width={160}
-                  height={48}
-                  className="h-[48px] w-auto max-w-full rounded-lg object-contain"
-                />
+                <span>Play Now</span>
               </a>
               <Link
                 href="/versus"
-                className="h-[48px] px-5 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-indigo-600/25 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                className="flex h-[48px] min-w-0 flex-1 items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3 text-sm font-bold text-white shadow-md shadow-indigo-600/25 transition-all hover:scale-[1.02] hover:bg-indigo-700 active:scale-[0.98] sm:w-[160px] sm:flex-none"
               >
-                <span>⚔️ Play 1 vs 1</span>
-                <span className="bg-amber-400 text-slate-950 text-[10px] px-2 py-0.5 rounded-full font-black leading-none">
-                  NEW
-                </span>
+                <span>Play 1 vs 1</span>
               </Link>
             </div>
           </div>
@@ -163,7 +154,7 @@ export function Hero() {
           {/* Right Column: Phone Mockup inside a Box */}
           <div className="relative mx-auto mt-4 sm:mt-0 flex w-full max-w-[440px] sm:max-w-[600px] md:max-w-full justify-center md:justify-end">
             <div
-              className="relative flex w-full items-end justify-center overflow-hidden rounded-3xl sm:rounded-[2.5rem] bg-gradient-to-br from-[#e8ddff] via-[#efeaff] to-[#dbe7ff] pt-8 px-6 sm:pt-12 sm:px-12 border border-slate-100 shadow-sm aspect-[4/5] sm:aspect-auto sm:h-[620px] lg:h-[720px] touch-pan-y select-none"
+              className="relative flex w-full items-end justify-center overflow-hidden rounded-3xl sm:rounded-[2.5rem] bg-gradient-to-br from-[#e8ddff] via-[#efeaff] to-[#dbe7ff] pt-8 px-6 sm:pt-12 sm:px-12 border border-slate-100 shadow-sm aspect-[4/5] sm:aspect-auto sm:h-[620px] lg:h-[720px] md:scale-[1.08] md:origin-center touch-pan-y select-none"
               aria-label="Sudoku King app showcase"
               aria-roledescription="carousel"
               onKeyDown={(event) => {
@@ -208,7 +199,7 @@ export function Hero() {
                 </div>
               </div>
 
-              <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-white/70 bg-white/80 px-3 py-2 shadow-sm backdrop-blur-md">
+              <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 items-center gap-1.5 rounded-full border border-white/70 bg-white/40 px-3 py-2 shadow-sm backdrop-blur-md">
                 {heroSlides.map((slide, index) => (
                   <button
                     aria-label={`Show slide ${index + 1}`}

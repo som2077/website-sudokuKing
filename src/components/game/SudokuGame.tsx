@@ -3,7 +3,6 @@
 import { useSyncExternalStore, useEffect } from "react";
 import { useSudokuKeyboard } from "@/hooks/useSudokuKeyboard";
 import { SudokuHeader } from "./SudokuHeader";
-import { LiveActivityTicker } from "@/components/live/LiveActivityTicker";
 import { SudokuBoard } from "./SudokuBoard";
 import { SudokuControls } from "./SudokuControls";
 import { ActiveHintBanner } from "./ActiveHintBanner";
@@ -45,11 +44,6 @@ function SudokuGameSkeleton() {
             <div className="h-8 w-20 bg-slate-900/10 rounded-lg animate-pulse" />
           </div>
         </div>
-      </div>
-
-      {/* Skeleton Ticker */}
-      <div className="w-full bg-slate-100/80 border-y border-slate-200 py-2 px-4 h-[37px] flex items-center justify-center">
-        <div className="h-3.5 w-64 bg-slate-200 rounded-full animate-pulse" />
       </div>
 
       {/* Skeleton Main Stage */}
@@ -108,10 +102,9 @@ function SudokuGameContent() {
 
   return (
     <div className="flex flex-col w-full bg-background text-foreground relative">
-      {/* Game HUD Bar & Ticker (Sticky together) */}
-      <div className="sticky top-0 z-40 w-full flex flex-col bg-white shadow-sm shadow-slate-200/50">
+      {/* Game HUD Bar */}
+      <div className="sticky top-0 z-40 w-full flex flex-col bg-white/10 shadow-sm shadow-slate-200/50 backdrop-blur-xl">
         <SudokuHeader />
-        <LiveActivityTicker />
       </div>
 
       {/* Main Game Stage */}

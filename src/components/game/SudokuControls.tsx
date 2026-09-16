@@ -1,15 +1,11 @@
 "use client";
 
 import { useSudokuStore } from "@/store/useSudokuStore";
-import { Button } from "@/components/ui/button";
 import {
   Undo2,
   Eraser,
   Pencil,
   Lightbulb,
-  Sparkles,
-  Zap,
-  Check,
 } from "lucide-react";
 import { analytics } from "@/lib/analytics";
 
@@ -17,17 +13,13 @@ export function SudokuControls() {
   const board = useSudokuStore((s) => s.board);
   const status = useSudokuStore((s) => s.status);
   const notesMode = useSudokuStore((s) => s.notesMode);
-  const fastPencilMode = useSudokuStore((s) => s.fastPencilMode);
   const hintsLeft = useSudokuStore((s) => s.hintsLeft);
   const historyIndex = useSudokuStore((s) => s.historyIndex);
   const inputDigit = useSudokuStore((s) => s.inputDigit);
   const erase = useSudokuStore((s) => s.erase);
   const toggleNotesMode = useSudokuStore((s) => s.toggleNotesMode);
-  const toggleFastPencilMode = useSudokuStore((s) => s.toggleFastPencilMode);
-  const autoFillAllNotes = useSudokuStore((s) => s.autoFillAllNotes);
   const getHint = useSudokuStore((s) => s.getHint);
   const undo = useSudokuStore((s) => s.undo);
-  const openModal = useSudokuStore((s) => s.openModal);
 
   const isGameActive = status === "playing";
 
@@ -197,48 +189,6 @@ export function SudokuControls() {
         </div>
       </div>
 
-      {/* Auxiliary Tools Bar - Apple Segmented Pills */}
-      <div className="flex items-center justify-between gap-2 px-1 text-xs">
-        <button
-          onClick={() => {
-            toggleFastPencilMode();
-            analytics.trackGameAction("fast_pencil", { enabled: !fastPencilMode });
-          }}
-          className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border font-mono transition-all cursor-pointer apple-press-subtle ${
-            fastPencilMode
-              ? "border-blue-300 bg-blue-50 text-blue-700 font-semibold"
-              : "border-black/[0.06] bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-50 shadow-2xs"
-          }`}
-          title="Number-First Input Mode"
-        >
-          <Zap className="h-3.5 w-3.5 text-blue-600" />
-          <span>Number-First: {fastPencilMode ? "ON" : "OFF"}</span>
-        </button>
-
-        <button
-          onClick={() => {
-            autoFillAllNotes();
-            analytics.trackGameAction("autofill_notes");
-          }}
-          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-black/[0.06] bg-white text-slate-700 hover:text-slate-950 hover:bg-slate-50 font-mono shadow-2xs transition-all apple-press-subtle cursor-pointer"
-          title="Auto-calculate candidate notes for all empty squares"
-        >
-          <Sparkles className="h-3.5 w-3.5 text-amber-500 fill-amber-500" />
-          <span>Auto-Notes</span>
-        </button>
-
-        <Button
-          variant="outline"
-          size="sm"
-          onClick={() => {
-            openModal("new-game");
-            analytics.trackGameAction("new_game");
-          }}
-          className="h-8 px-3 text-xs font-semibold rounded-full border-black/[0.08] bg-white hover:bg-slate-50 text-slate-800 shadow-2xs apple-press cursor-pointer"
-        >
-          New Game
-        </Button>
-      </div>
     </div>
   );
 }

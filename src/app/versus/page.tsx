@@ -5,8 +5,9 @@ import { Footer } from "@/components/Footer";
 import { VersusGame } from "@/components/versus/VersusGame";
 
 export const metadata: Metadata = {
-  title: "1 vs 1 Sudoku Duel - Multiplayer Race | Sudoku King",
+  title: "1 vs 1 Sudoku Duel - Multiplayer Race",
   description: "Challenge your friends or race against AI solvers in real-time 1 vs 1 Sudoku duels on Sudoku King.",
+  robots: { index: false, follow: true },
 };
 
 export default function VersusPage() {

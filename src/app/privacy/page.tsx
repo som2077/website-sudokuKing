@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Sudoku King",
+  title: "Privacy Policy",
   description:
     "Learn how Sudoku King protects your privacy, handles gameplay data, and complies with GDPR, CCPA, and app store policies.",
   keywords: [
@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     "ccpa compliance",
     "admob privacy",
   ],
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

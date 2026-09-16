@@ -5,17 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import {
-  Crown,
   Play,
   Pause,
-  BarChart2,
   Settings,
-  HelpCircle,
-  Calendar,
   Sparkles,
-  Trophy,
 } from "lucide-react";
-import { LivePresenceBadge } from "@/components/live/LivePresenceBadge";
 
 export function SudokuHeader() {
   const {
@@ -37,17 +31,17 @@ export function SudokuHeader() {
   };
 
   return (
-    <header className="w-full apple-blur-nav transition-all">
-      <div className="container mx-auto max-w-7xl px-3 sm:px-6 py-2">
-        <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-y-2.5 gap-x-2">
+    <header className="w-full border-b border-black/[0.06] bg-white/10 px-4 py-2 text-black backdrop-blur-xl transition-all sm:px-6 lg:px-8">
+      <div className="mx-auto flex w-full max-w-[1300px] items-center justify-between gap-4">
+        <div className="flex w-full flex-wrap items-center justify-between gap-x-2 gap-y-2.5 sm:flex-nowrap">
           {/* Brand */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="hidden shrink-0 items-center gap-2 sm:flex">
             <Image
               src="/sudukoLogo.svg"
               alt="Sudoku King"
-              width={120}
-              height={40}
-              className="h-7 w-auto object-contain sm:h-8"
+              width={151}
+              height={52}
+              className="h-9 w-auto object-contain sm:h-10 md:h-11"
               priority
             />
             {dailyDate && (
@@ -58,7 +52,7 @@ export function SudokuHeader() {
           </div>
 
           {/* Game Stats HUD - Apple Dynamic Capsule */}
-          <div className="order-last w-full sm:order-none sm:w-auto flex justify-center mt-0.5 sm:mt-0">
+          <div className="flex min-w-0 shrink-0 items-center justify-center sm:w-auto sm:mt-0">
             <div className="flex items-center gap-3 sm:gap-4 bg-slate-100/80 backdrop-blur-md px-3.5 py-1 rounded-full border border-black/[0.06] text-xs sm:text-sm shadow-2xs">
               {/* Difficulty */}
               <button

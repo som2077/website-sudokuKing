@@ -41,12 +41,12 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/[0.06] bg-white/10 px-4 py-2 text-black backdrop-blur-xl sm:px-6 lg:px-8">
-      <div className="mx-auto flex max-w-[1300px] items-center justify-between gap-4">
+      <div className="mx-auto flex w-full max-w-[1300px] items-center justify-between gap-4 lg:grid lg:grid-cols-[1fr_auto_1fr]">
         {/* Brand Logo */}
         <Link
           href="/"
           onClick={closeMenu}
-          className="group flex shrink-0 items-center apple-press-subtle"
+          className="group flex shrink-0 items-center apple-press-subtle lg:justify-self-start"
           aria-label="Sudoku King Home"
         >
           <Image
@@ -62,9 +62,9 @@ export function Navbar() {
         {/* Desktop Navigation Links */}
         <nav
           aria-label="Main navigation"
-          className="hidden items-center justify-center lg:flex flex-1 max-w-2xl mx-2"
+          className="hidden items-center justify-center lg:flex lg:justify-self-center lg:mx-0 lg:max-w-none"
         >
-          <div className="flex items-center gap-1 xl:gap-2 whitespace-nowrap text-xs xl:text-sm font-bold text-slate-800">
+          <div className="flex items-center gap-1 xl:gap-2  whitespace-nowrap text-xs xl:text-base font-bold text-slate-800">
             <a
               href="#leaderboard"
               className="rounded-full px-2.5 py-1.5 transition-all hover:bg-black/[0.04] hover:text-[#8a5a18] xl:px-3.5 xl:py-2 apple-press-subtle"
@@ -73,12 +73,9 @@ export function Navbar() {
             </a>
             <Link
               href="/versus"
-              className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 font-bold text-indigo-600 bg-indigo-50 hover:bg-indigo-100 transition-all xl:px-3 xl:py-2 apple-press-subtle border border-indigo-200/80 shadow-xs"
+              className="flex items-center gap-1.5 rounded-full px-2.5 py-1.5 font-bold text-slate-800  hover:bg-indigo-100 "
             >
-              <span>⚔️ 1 vs 1</span>
-              <span className="text-[10px] px-1.5 py-0.5 bg-indigo-600 text-white rounded-full font-black leading-none">
-                NEW
-              </span>
+              <span>1 vs 1</span>
             </Link>
             <button
               onClick={() => openModal("daily")}
@@ -96,7 +93,7 @@ export function Navbar() {
         </nav>
 
         {/* Desktop Right Side: Online Badge + App Availability */}
-        <div className="hidden shrink-0 items-center gap-3 lg:flex">
+        <div className="hidden shrink-0 items-center ml-20 gap-3 lg:flex lg:justify-self-end">
           <LivePresenceBadge />
           <StoreBadges size="nav" />
         </div>
@@ -129,7 +126,7 @@ export function Navbar() {
         className={`${menuOpen ? "block" : "hidden"} absolute left-0 right-0 top-full px-4 pt-2 pb-4 lg:hidden`}
       >
         <div
-          className="fixed inset-0 top-[60px] bg-black/20 backdrop-blur-xs -z-10"
+          className="fixed inset-0 top-[60px] -z-10 bg-black/20 backdrop-blur-md"
           onClick={closeMenu}
           aria-hidden="true"
         />
