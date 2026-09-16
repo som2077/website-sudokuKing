@@ -6,9 +6,7 @@ import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useSudokuStore } from "@/store/useSudokuStore";
 import { LivePresenceBadge } from "@/components/live/LivePresenceBadge";
-
-const PLAY_STORE_URL =
-  "https://play.google.com/store/apps/details?id=com.sudokuking";
+import { StoreBadges } from "@/components/StoreBadges";
 
 export function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -97,24 +95,10 @@ export function Navbar() {
           </div>
         </nav>
 
-        {/* Desktop Right Side: Online Badge + Play Store Icon */}
+        {/* Desktop Right Side: Online Badge + App Availability */}
         <div className="hidden shrink-0 items-center gap-3 lg:flex">
           <LivePresenceBadge />
-          <a
-            href={PLAY_STORE_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Get Sudoku King on Google Play"
-            className="transition-transform hover:scale-[1.02] active:scale-[0.98]"
-          >
-            <Image
-              src="/googleplay.png"
-              alt="Get it on Google Play"
-              width={135}
-              height={40}
-              className="h-10 w-auto"
-            />
-          </a>
+          <StoreBadges size="nav" />
         </div>
 
         {/* Mobile Right Side: Online Badge + Hamburger */}
@@ -190,22 +174,7 @@ export function Navbar() {
             Features
           </a>
           <div className="mt-2 flex justify-center border-t border-black/[0.06] pt-3 sm:col-span-2">
-            <a
-              href={PLAY_STORE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Get Sudoku King on Google Play"
-              className="transition-transform hover:scale-[1.02] active:scale-[0.98]"
-              onClick={closeMenu}
-            >
-              <Image
-                src="/googleplay.png"
-                alt="Get it on Google Play"
-                width={135}
-                height={40}
-                className="h-9 w-auto"
-              />
-            </a>
+            <StoreBadges size="nav" />
           </div>
         </nav>
       </div>
