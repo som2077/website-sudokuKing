@@ -31,7 +31,7 @@ export function SudokuHeader() {
   };
 
   return (
-    <header className="w-full border-b border-black/[0.06] bg-white/10 px-4 py-2 text-black backdrop-blur-xl transition-all sm:px-6 lg:px-8">
+    <header className="w-full bg-white/10 px-4 py-2 text-black backdrop-blur-xl transition-all sm:px-6 lg:px-8">
       <div className="mx-auto flex w-full max-w-[1300px] items-center justify-between gap-4">
         <div className="flex w-full flex-wrap items-center justify-between gap-x-2 gap-y-2.5 sm:flex-nowrap">
           {/* Brand */}

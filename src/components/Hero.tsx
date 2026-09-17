@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { SplitText } from "@/components/ui/SplitText";
 import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
 import { LightRays } from "@/components/ui/light-rays";
 
@@ -112,20 +111,10 @@ export function Hero() {
 
             {/* Heading */}
             <h1 className="max-w-xl text-4xl sm:text-5xl md:text-[3.5rem] lg:text-[3rem] font-bold leading-[1.1] tracking-tight text-black flex flex-col items-center xl:items-start">
-              <SplitText
-                text="Meet Sudoku King"
-                className="block"
-                delay={30}
-                animationFrom={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-                animationTo={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              />
-              <SplitText
-                text="Play with focus"
-                className="block mt-1 sm:mt-2 text-slate-800"
-                delay={40}
-                animationFrom={{ opacity: 0, y: 40, filter: "blur(10px)" }}
-                animationTo={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              />
+              <span className="block">Play Free Sudoku Online</span>
+              <span className="block mt-1 text-slate-800 sm:mt-2">
+                Daily Puzzles & Guides
+              </span>
             </h1>
 
             {/* Subtitle */}
@@ -135,16 +124,16 @@ export function Hero() {
             </p>
 
             {/* Action CTAs */}
-            <div className="mt-6 flex w-full max-w-[332px] flex-nowrap items-center justify-center gap-3 px-0 sm:mt-8 sm:max-w-none sm:gap-4 md:justify-start">
+            <div className="mt-6 grid w-full max-w-[332px] grid-cols-2 items-center gap-3 px-0 sm:mt-8 sm:flex sm:max-w-none sm:gap-4 md:justify-start">
               <a
                 href="#game"
-                className="flex h-[48px] min-w-0 flex-1 items-center justify-center rounded-lg bg-black text-base font-medium text-white shadow-sm transition-all hover:bg-slate-900 hover:scale-[1.02] active:scale-[0.98] apple-press-subtle sm:w-[160px] sm:flex-none"
+                className="flex h-[48px] w-full min-w-0 items-center justify-center rounded-lg bg-black text-base font-medium text-white shadow-sm transition-all hover:bg-slate-900 hover:scale-[1.02] active:scale-[0.98] apple-press-subtle sm:w-[160px]"
               >
                 <span>Play Now</span>
               </a>
               <Link
                 href="/versus"
-                className="flex h-[48px] min-w-0 flex-1 items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3 text-sm font-bold text-white shadow-md shadow-indigo-600/25 transition-all hover:scale-[1.02] hover:bg-indigo-700 active:scale-[0.98] sm:w-[160px] sm:flex-none"
+                className="flex h-[48px] w-full min-w-0 items-center justify-center gap-2 rounded-lg bg-indigo-600 px-3 text-sm font-bold text-white shadow-md shadow-indigo-600/25 transition-all hover:scale-[1.02] hover:bg-indigo-700 active:scale-[0.98] sm:w-[160px]"
               >
                 <span>Play 1 vs 1</span>
               </Link>
@@ -191,7 +180,7 @@ export function Hero() {
                         width={slide.width}
                         height={slide.height}
                         priority={index === 0}
-                        unoptimized
+                        sizes="(max-width: 768px) 60vw, 283px"
                         className="h-full w-auto object-contain object-center drop-shadow-[0_20px_40px_rgba(0,0,0,0.15)]"
                       />
                     </div>

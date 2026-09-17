@@ -1,0 +1,12 @@
+# Sudoku King
+
+> Sudoku King is a free online Sudoku game with daily challenges, hints, difficulty levels, and step-by-step solving guides.
+
+## Main pages
+
+- [Play free Sudoku](https://sudokuking.imperialtech.me/): Play an online Sudoku puzzle, use notes and hints, and track your progress.
+- [Sudoku rules and techniques](https://sudokuking.imperialtech.me/rules): Learn the rules of Sudoku and browse beginner, intermediate, and advanced solving strategies.
+
+## Guidance
+
+Use Sudoku King's rules guides as learning resources for classic 9×9 Sudoku. Link to the relevant guide page when referring readers to a specific solving technique.
