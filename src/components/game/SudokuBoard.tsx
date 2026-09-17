@@ -156,40 +156,45 @@ export function SudokuBoard() {
         suppressHydrationWarning
         className="grid grid-cols-9 w-full h-full bg-white"
       >
-        {board.map((val, idx) => {
-          const r = getRow(idx);
-          const c = getCol(idx);
-          const b = getBlock(idx);
+        {Array.from({ length: 9 }, (_, row) => (
+          <div key={row} role="row" className="contents">
+            {board.slice(row * 9, row * 9 + 9).map((val, column) => {
+              const idx = row * 9 + column;
+              const r = getRow(idx);
+              const c = getCol(idx);
+              const b = getBlock(idx);
 
-          const isInitial = initialBoard[idx] !== 0;
-          const isSelected = selectedCell === idx;
-          const isInSelectedHouse =
-            settings.highlightArea &&
-            selectedCell !== null &&
-            (r === selectedR || c === selectedC || b === selectedB);
-          const isSameNumber =
-            settings.highlightSameNumbers &&
-            selectedVal !== 0 &&
-            val === selectedVal;
+              const isInitial = initialBoard[idx] !== 0;
+              const isSelected = selectedCell === idx;
+              const isInSelectedHouse =
+                settings.highlightArea &&
+                selectedCell !== null &&
+                (r === selectedR || c === selectedC || b === selectedB);
+              const isSameNumber =
+                settings.highlightSameNumbers &&
+                selectedVal !== 0 &&
+                val === selectedVal;
 
-          const isError = errorCells.includes(idx) || duplicateCells.has(idx);
-          const cellNotes = notes[idx] || [];
+              const isError = errorCells.includes(idx) || duplicateCells.has(idx);
+              const cellNotes = notes[idx] || [];
 
-          return (
-            <Cell
-              key={idx}
-              index={idx}
-              value={val}
-              isInitial={isInitial}
-              isSelected={isSelected}
-              isInSelectedHouse={isInSelectedHouse}
-              isSameNumber={isSameNumber}
-              isError={isError}
-              notes={cellNotes}
-              onClick={() => selectCell(idx)}
-            />
-          );
-        })}
+              return (
+                <Cell
+                  key={idx}
+                  index={idx}
+                  value={val}
+                  isInitial={isInitial}
+                  isSelected={isSelected}
+                  isInSelectedHouse={isInSelectedHouse}
+                  isSameNumber={isSameNumber}
+                  isError={isError}
+                  notes={cellNotes}
+                  onClick={() => selectCell(idx)}
+                />
+              );
+            })}
+          </div>
+        ))}
       </div>
 
       {/* Paused Overlay - Apple Frosted Glass */}

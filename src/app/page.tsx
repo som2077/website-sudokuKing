@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
-import { SudokuGame } from "@/components/game/SudokuGame";
-import { DailyLeaderboard } from "@/components/leaderboard/DailyLeaderboard";
+import { DeferredHomepageInteractive } from "@/components/home/DeferredHomepageInteractive";
 import { Footer } from "@/components/Footer";
 import { absoluteUrl, siteName } from "@/lib/site";
 
@@ -52,10 +51,7 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
       />
       <main className="flex-1 flex flex-col bg-white">
-        <section id="game" className="py-6 sm:py-12 bg-white scroll-mt-16">
-          <SudokuGame />
-        </section>
-        <DailyLeaderboard />
+        <DeferredHomepageInteractive />
         <section
           aria-labelledby="sudoku-guide-title"
           className="border-t border-slate-200 bg-slate-50 py-14 sm:py-20"

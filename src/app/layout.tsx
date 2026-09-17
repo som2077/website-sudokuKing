@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { PostHogProvider } from "@/providers/PostHogProvider";
+import { FirebaseAnalyticsProvider } from "@/providers/FirebaseAnalyticsProvider";
 import { absoluteUrl, siteName, siteUrl } from "@/lib/site";
 import "./globals.css";
 
@@ -94,9 +94,9 @@ export default function RootLayout({
         className="min-h-full flex flex-col bg-white text-foreground selection:bg-indigo-500/20 selection:text-indigo-900"
         suppressHydrationWarning
       >
-        <PostHogProvider>
+        <FirebaseAnalyticsProvider>
           {children}
-        </PostHogProvider>
+        </FirebaseAnalyticsProvider>
         <Analytics />
         <SpeedInsights />
       </body>

@@ -72,6 +72,7 @@ const Cell = memo(function Cell({
       role="gridcell"
       aria-selected={isSelected}
       tabIndex={isSelected ? 0 : -1}
+      aria-label={`Row ${r + 1}, Column ${c + 1}: ${value || "empty"}${isInitial ? ", given clue" : ""}`}
       className={`relative aspect-square flex items-center justify-center text-[28px] sm:text-[34px] select-none cursor-pointer transition-all duration-100 ease-out active:scale-[0.93] ${borderB} ${borderR} ${bgClass} ${textClass}`}
     >
       {value !== 0 ? (
@@ -128,43 +129,48 @@ export function VersusBoard() {
         aria-label="Versus Sudoku Board"
         className="grid grid-cols-9 w-full h-full bg-white rounded-2xl overflow-hidden border border-black/[0.06]"
       >
-        {Array.from({ length: 81 }).map((_, idx) => {
-          const val = board[idx];
-          const isInitial = initialBoard[idx] !== 0;
-          const isSelected = selectedCell === idx;
-          const r = getRow(idx);
-          const c = getCol(idx);
-          const b = getBlock(idx);
+        {Array.from({ length: 9 }, (_, row) => (
+          <div key={row} role="row" className="contents">
+            {Array.from({ length: 9 }, (_, column) => {
+              const idx = row * 9 + column;
+              const val = board[idx];
+              const isInitial = initialBoard[idx] !== 0;
+              const isSelected = selectedCell === idx;
+              const r = getRow(idx);
+              const c = getCol(idx);
+              const b = getBlock(idx);
 
-          const isInSelectedHouse =
-            selectedCell !== null &&
-            !isSelected &&
-            (r === selRow || c === selCol || b === selBlock);
+              const isInSelectedHouse =
+                selectedCell !== null &&
+                !isSelected &&
+                (r === selRow || c === selCol || b === selBlock);
 
-          const isSameNumber =
-            selectedValue !== null &&
-            selectedValue !== 0 &&
-            val === selectedValue &&
-            !isSelected;
+              const isSameNumber =
+                selectedValue !== null &&
+                selectedValue !== 0 &&
+                val === selectedValue &&
+                !isSelected;
 
-          const isError = errorCells.includes(idx);
-          const cellNotes = notes[idx] || [];
+              const isError = errorCells.includes(idx);
+              const cellNotes = notes[idx] || [];
 
-          return (
-            <Cell
-              key={idx}
-              index={idx}
-              value={val}
-              isInitial={isInitial}
-              isSelected={isSelected}
-              isInSelectedHouse={isInSelectedHouse}
-              isSameNumber={isSameNumber}
-              isError={isError}
-              notes={cellNotes}
-              onClick={() => selectCell(idx)}
-            />
-          );
-        })}
+              return (
+                <Cell
+                  key={idx}
+                  index={idx}
+                  value={val}
+                  isInitial={isInitial}
+                  isSelected={isSelected}
+                  isInSelectedHouse={isInSelectedHouse}
+                  isSameNumber={isSameNumber}
+                  isError={isError}
+                  notes={cellNotes}
+                  onClick={() => selectCell(idx)}
+                />
+              );
+            })}
+          </div>
+        ))}
       </div>
     </div>
   );

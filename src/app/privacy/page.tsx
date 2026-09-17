@@ -199,8 +199,9 @@ export default function PrivacyPage() {
                         For non-VIP users, Google AdMob may process mobile advertising
                         identifiers (Google Advertising ID / Apple IDFA) to serve ads,
                         measure ad performance, and limit repeated ad views in accordance
-                        with platform policies. Firebase Crashlytics collects anonymous
-                        crash stacks and error traces.
+                        with platform policies. On the website, Firebase Analytics may
+                        collect pseudonymous usage events, device/browser information,
+                        and page interaction data to help us improve the experience.
                       </p>
                     </div>
 
@@ -264,6 +265,7 @@ export default function PrivacyPage() {
                     <li>To save and restore your game progress, settings, and high score statistics.</li>
                     <li>To deliver puzzle hints, undo steps, and calculate difficulty ratings.</li>
                     <li>To diagnose crashes, resolve bugs, and optimize battery and memory usage.</li>
+                    <li>To understand website usage and improve puzzle, guide, and navigation experiences.</li>
                     <li>To deliver advertisements in the free tier of the application.</li>
                     <li>To validate and activate VIP entitlements and purchased hint packs.</li>
                     <li>To comply with applicable legal obligations and app store developer standards.</li>
@@ -301,9 +303,9 @@ export default function PrivacyPage() {
                     </div>
 
                     <div className="border border-slate-200 rounded-xl p-3.5 bg-white">
-                      <p className="font-semibold text-slate-900 text-xs">Google Firebase Crashlytics & Analytics</p>
+                      <p className="font-semibold text-slate-900 text-xs">Google Firebase Analytics</p>
                       <p className="text-[12px] text-slate-600 mt-1">
-                        Collects anonymous telemetry and stack traces when an unexpected error occurs.{" "}
+                        Collects pseudonymous website usage events and technical information to help us understand and improve the service.{" "}
                         <a
                           href="https://firebase.google.com/support/privacy"
                           target="_blank"

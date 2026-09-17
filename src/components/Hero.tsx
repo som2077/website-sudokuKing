@@ -2,9 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatedShinyText } from "@/components/ui/animated-shiny-text";
-import { LightRays } from "@/components/ui/light-rays";
+import { useCallback, useRef, useState } from "react";
 
 const heroSlides = [
   {
@@ -30,14 +28,6 @@ const heroSlides = [
 export function Hero() {
   const [activeSlide, setActiveSlide] = useState(0);
   const pointerStartX = useRef<number | null>(null);
-
-  useEffect(() => {
-    const autoSwipe = window.setInterval(() => {
-      setActiveSlide((currentSlide) => (currentSlide + 1) % heroSlides.length);
-    }, 3000);
-
-    return () => window.clearInterval(autoSwipe);
-  }, []);
 
   const goToSlide = useCallback((slideIndex: number) => {
     setActiveSlide(Math.max(0, Math.min(slideIndex, heroSlides.length - 1)));
@@ -100,13 +90,13 @@ export function Hero() {
                   className="h-5 w-5 sm:h-6 sm:w-6 rounded-full border-2 border-white object-cover"
                 />
               </span>
-              <AnimatedShinyText className="min-w-0 flex-1 pr-1 text-center leading-tight sm:pr-2 transition ease-out hover:text-neutral-600 hover:duration-300 hover:dark:text-neutral-400">
+              <span className="min-w-0 flex-1 pr-1 text-center leading-tight text-neutral-700 sm:pr-2">
                 Loved by 50k users with{" "}
                 <span className="text-[#FFB800] text-sm sm:text-base leading-none mx-1">
                   ★
                 </span>{" "}
                 4.9 rating worldwide
-              </AnimatedShinyText>
+              </span>
             </div>
 
             {/* Heading */}
@@ -158,7 +148,6 @@ export function Hero() {
               role="region"
               tabIndex={0}
             >
-              <LightRays color="rgba(240, 210, 255, 0.5)" />
               <div className="relative z-10 h-full w-full overflow-hidden">
                 <div
                   className="flex h-full items-center transition-transform duration-300 ease-out"
@@ -193,15 +182,19 @@ export function Hero() {
                   <button
                     aria-label={`Show slide ${index + 1}`}
                     aria-current={index === activeSlide ? "true" : undefined}
-                    className={`h-1.5 rounded-full transition-all duration-200 ${
-                      index === activeSlide
-                        ? "w-5 bg-slate-900"
-                        : "w-1.5 bg-slate-300 hover:bg-slate-500"
-                    }`}
+                    className="-mx-2 flex h-8 w-8 items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
                     key={slide.src}
                     onClick={() => goToSlide(index)}
                     type="button"
-                  />
+                  >
+                    <span
+                      className={`h-1.5 rounded-full transition-all duration-200 ${
+                        index === activeSlide
+                          ? "w-5 bg-slate-900"
+                          : "w-1.5 bg-slate-300 hover:bg-slate-500"
+                      }`}
+                    />
+                  </button>
                 ))}
               </div>
             </div>
